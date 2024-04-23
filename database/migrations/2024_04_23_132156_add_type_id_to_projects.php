@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->foreignId('type_id')->nullable()->constrained();
+            $table->foreignId('type_id')->nullable()->after('img')->constrained();
         });
     }
 
@@ -22,7 +22,10 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->dropColumn('type_id');
+            // rimuove il vincolo come chiave esterna
+           $table->dropForeign('projects_type_id_foreign');
+            // cancella la colonna
+           $table->dropColumn('type_id');
         });
     }
 };
