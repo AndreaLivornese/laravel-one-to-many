@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
 use App\Models\Project;
+use App\Models\Type;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 
@@ -27,7 +28,10 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.insert');
+        // estraiamo tutte le righe presenti nella tabela types
+        $types = Type::all();
+
+        return view('admin.insert', compact('types'));
     }
 
     /**
@@ -41,14 +45,14 @@ class ProjectController extends Controller
         $newProject = new Project();
 
         // inserimento dell'immagine nella cartella "project_img"
-        $img_path = Storage::put('project_img', $data['img']);
-        $newProject->img = $img_path;
+        // $img_path = Storage::put('project_img', $data['img']);
+        // $newProject->img = $img_path;
 
         $newProject->name= $data['name'];
         $newProject->username_creator=$data['username_creator'];
         $newProject->link_github = $data['link_github'];
         $newProject->program_langs=$data['program_langs'];
-
+        $newProject->type_id = $data['project_type'];
         $newProject->save();
 
         return redirect()->route('admin.index');
@@ -71,11 +75,15 @@ class ProjectController extends Controller
     public function edit($id)
     {
 
+        // estraiamo tutte le righe presenti nella tabela types
+        $types = Type::all();
+
+
         // dd($project);
 
         $project = Project::find($id);
 
-        return view("admin.projectEdit", compact('project'));
+        return view("admin.projectEdit", compact('project', 'types'));
     }
 
     /**
@@ -90,11 +98,11 @@ class ProjectController extends Controller
 
         // dd($data);
         // aggiornamento dell'immagine 
-        $img_path = Storage::put('project_img', $data['img']);
+        // $img_path = Storage::put('project_img', $data['img']);
 
         // dd($img_path);
 
-        $project->img = $img_path;
+        // $project->img = $img_path;
 
         $project->name= $data['name'];
         $project->username_creator=$data['username_creator'];

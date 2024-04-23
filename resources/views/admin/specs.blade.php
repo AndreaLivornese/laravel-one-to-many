@@ -12,6 +12,7 @@
               <h5 class="card-title">{{$project->name}}</h5>
               <h6 class="card-title mb-4">{{$project->username_creator}}</h6>
               <p class="card-text">{{$project->program_lang}}</p>
+              <p class="card-text">{{$project->type?->name_type}}</p>
               <p class="card-text">{{$project->link_github}}</p>
             </div>
             <div class="card-footer d-flex gap-2">

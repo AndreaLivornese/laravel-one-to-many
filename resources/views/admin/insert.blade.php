@@ -47,7 +47,7 @@
             </div>
             @enderror
         </div>
-        <div class="mb-5">
+        <div class="mb-3">
             <label for="img" class="form-label">URL della thumb</label>
             <input type="file" class="form-control @error('img') is-invalid @enderror" id="img" name="img" value="{{old('img')}}">
 
@@ -56,6 +56,15 @@
                 {{$message}}
             </div>
             @enderror
+        </div>
+        <div class="mb-5" style="width:18rem">
+            <label for="project_type" class="form-label">Scegli la tipologia del progetto</label>
+            <select name="project_type" id="project_type" class="form-control">
+                <option value=""></option>
+                @foreach($types as $type)
+                <option value="{{$type->id}}" {{old('project_type') == $type->id ? 'selected' : ''}}>{{$type->name_type}}</option>
+                @endforeach
+            </select>
         </div>
 
         <button class="btn btn-outline-success">Invia</button>
