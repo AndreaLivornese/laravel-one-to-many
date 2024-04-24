@@ -58,6 +58,7 @@ class ProjectController extends Controller
 
         // colonna rimossa
         // $newProject->program_langs=$data['program_langs'];
+        
 
         $newProject->type_id = $data['project_type'];
         $newProject->save();
