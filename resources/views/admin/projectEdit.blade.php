@@ -73,7 +73,23 @@
             <div class="d-flex gap-4">
                 @foreach($technologies as $technology)
                 <div class="d-flex align-items-center gap-1">
-                    <input type="checkbox" name="technologies[]" id="tech-{{$technology->id}}" value="{{$technology->id}}"> <label for="tech-{{$technology->id}}">{{$technology->nome}}</label>
+                    <input 
+                        type="checkbox" 
+                        name="technologies[]" 
+                        id="tech-{{$technology->id}}"
+                        value="{{$technology->id}}"
+                        
+                        @if($errors->any())
+
+                        {{in_array($technology->id, old('technologies',[])) ? 'checked' : '' }}
+
+                        @else
+
+                        {{$project->technologies->contains($technology) ? 'checked' : '' }}
+
+                        @endif
+                    > 
+                    <label for="tech-{{$technology->id}}">{{$technology->nome}}</label>
                 </div>
                 @endforeach
             </div>
