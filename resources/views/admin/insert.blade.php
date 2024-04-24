@@ -66,12 +66,14 @@
                 @endforeach
             </select>
         </div>
-        <div class="mb-5" style="width:18rem">
+        <div class="mb-5">
             <label class="form-label">Tecnologie utilizzate</label>
             
             <div class="d-flex gap-4">
                 @foreach($technologies as $technology)
-                <input type="checkbox" name="technologies[]" id="tech-{{technology->id}}" value="{{technology->id}}"> <label for="tech-{{technology->id}}"></label>
+                <div class="d-flex align-items-center gap-1">
+                    <input type="checkbox" name="technologies[]" id="tech-{{$technology->id}}" value="{{$technology->id}}"> <label for="tech-{{$technology->id}}">{{$technology->nome}}</label>
+                </div>
                 @endforeach
             </div>
            
