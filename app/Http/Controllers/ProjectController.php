@@ -123,6 +123,8 @@ class ProjectController extends Controller
 
         $project->save();
 
+        $project->technologies()->sync($request->technologies);
+
         return redirect()->route('admin.index');
     }
 
