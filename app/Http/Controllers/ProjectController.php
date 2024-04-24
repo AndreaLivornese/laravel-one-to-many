@@ -55,7 +55,10 @@ class ProjectController extends Controller
         $newProject->name= $data['name'];
         $newProject->username_creator=$data['username_creator'];
         $newProject->link_github = $data['link_github'];
-        $newProject->program_langs=$data['program_langs'];
+
+        // colonna rimossa
+        // $newProject->program_langs=$data['program_langs'];
+
         $newProject->type_id = $data['project_type'];
         $newProject->save();
 
@@ -119,7 +122,9 @@ class ProjectController extends Controller
         $project->name= $data['name'];
         $project->username_creator=$data['username_creator'];
         $project->link_github = $data['link_github'];
-        $project->program_langs=$data['program_langs'];
+
+        // colonna rimossa
+        // $project->program_langs=$data['program_langs'];
 
         $project->save();
 

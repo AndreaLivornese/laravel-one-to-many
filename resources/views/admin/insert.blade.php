@@ -38,16 +38,6 @@
 
         </div>
         <div class="mb-3">
-            <label for="program_langs" class="form-label">Linguaggi utilizzati</label>
-            <input type="text" class="form-control @error('program_langs') is-invalid @enderror" id="program_langs" name="program_langs" value="{{old('program_langs')}}">
-
-            @error('program_langs')
-            <div class="invalid-feedback">
-                {{$message}}
-            </div>
-            @enderror
-        </div>
-        <div class="mb-3">
             <label for="img" class="form-label">URL della thumb</label>
             <input type="file" class="form-control @error('img') is-invalid @enderror" id="img" name="img" value="{{old('img')}}">
 
