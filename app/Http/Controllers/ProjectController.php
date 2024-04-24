@@ -42,7 +42,7 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        // dd($request->validated());
+        // dd($request->all());
 
         $data= $request->all();
 
@@ -59,6 +59,10 @@ class ProjectController extends Controller
         $newProject->type_id = $data['project_type'];
         $newProject->save();
 
+
+        // inserimento degli id nella tabella pivot
+        $newProject->technologies()->attach($request->technologies);
+
         return redirect()->route('admin.index');
 
 
@@ -69,11 +73,8 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        // estraiamo tutte le righe presenti nella tabela types
         $project = Project::find($id);
 
-        // estraiamo tutte le righe presenti nella tabela technology
-        $technologies = Technology::all();
         return view('admin.specs', compact('project'));
     }
 
@@ -86,12 +87,15 @@ class ProjectController extends Controller
         // estraiamo tutte le righe presenti nella tabela types
         $types = Type::all();
 
+        // estraiamo tutte le righe presenti nella tabela technology
+        $technologies = Technology::all();
+
 
         // dd($project);
 
         $project = Project::find($id);
 
-        return view("admin.projectEdit", compact('project', 'types'));
+        return view("admin.projectEdit", compact('project', 'types','technologies'));
     }
 
     /**
