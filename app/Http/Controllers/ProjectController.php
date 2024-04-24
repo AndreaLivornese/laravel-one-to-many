@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Project;
 use App\Models\Type;
+use App\Models\Technology;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 
@@ -30,8 +31,10 @@ class ProjectController extends Controller
     {
         // estraiamo tutte le righe presenti nella tabela types
         $types = Type::all();
+        // estraiamo tutte le righe presenti nella tabela technology
+        $technologies = Technology::all();
 
-        return view('admin.insert', compact('types'));
+        return view('admin.insert', compact('types','technologies'));
     }
 
     /**
@@ -66,7 +69,11 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
+        // estraiamo tutte le righe presenti nella tabela types
         $project = Project::find($id);
+
+        // estraiamo tutte le righe presenti nella tabela technology
+        $technologies = Technology::all();
         return view('admin.specs', compact('project'));
     }
 

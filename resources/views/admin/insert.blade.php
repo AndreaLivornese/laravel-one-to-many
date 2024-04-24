@@ -57,7 +57,7 @@
             </div>
             @enderror
         </div>
-        <div class="mb-5" style="width:18rem">
+        <div class="mb-3" style="width:18rem">
             <label for="project_type" class="form-label">Scegli la tipologia del progetto</label>
             <select name="project_type" id="project_type" class="form-control">
                 <option value=""></option>
@@ -65,6 +65,16 @@
                 <option value="{{$type->id}}" {{old('project_type') == $type->id ? 'selected' : ''}}>{{$type->name_type}}</option>
                 @endforeach
             </select>
+        </div>
+        <div class="mb-5" style="width:18rem">
+            <label class="form-label">Tecnologie utilizzate</label>
+            
+            <div class="d-flex gap-4">
+                @foreach($technologies as $technology)
+                <input type="checkbox" name="technologies[]" id="tech-{{technology->id}}" value="{{technology->id}}"> <label for="tech-{{technology->id}}"></label>
+                @endforeach
+            </div>
+           
         </div>
 
         <button class="btn btn-outline-success">Invia</button>
