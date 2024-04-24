@@ -26,6 +26,7 @@ class StoreProjectRequest extends FormRequest
             'username_creator'=>'required|max:20',
             'link_github'=>'required|max:300',
             'program_langs'=>'max:255',
+            'project_type'=>'nullable|exists:types,id'
         ];
     }
 
